@@ -33,7 +33,9 @@
         font-family: "Noto Sans KR", sans-serif;
       }
       .title_image {
+        color: white;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         letter-spacing: 0.15rem;
@@ -80,11 +82,27 @@
         height: 10rem;
       }
     </style>
+    <script>
+        let temperature = 0;
+        $.ajax({
+type: "GET",
+url: "http://spartacodingclub.shop/sparta_api/weather/seoul",
+data: {},
+success: function(response){
+temperature = response.temp;
+$('.temperature').append(temperature)
+}
+})
+$(document).ready(function(){
+	alert('다 로딩됐다!')
+});
+    </script>
   </head>
 
   <body>
     <div class="title_image">
       <h1>M2U Cafe</h1>
+      <p>현재 기온: <span class="temperature"></span>도</p>
     </div>
     <div class="post">
       <div class="form-floating mb-3">
