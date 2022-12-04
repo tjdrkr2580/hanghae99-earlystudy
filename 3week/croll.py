@@ -1,6 +1,10 @@
 import requests
 from bs4 import BeautifulSoup
 
+from pymongo import MongoClient
+client = MongoClient('mongodb+srv://tjdrkr2580:rlaxogus40@cluster0.wsngksj.mongodb.net/?retryWrites=true&w=majority')
+db = client.dbspartad
+
 #headers 
 #HTTP헤더는 클라이언트와 서버가 요청 또는 응답으로 부가적인 정보를
 #전송 할 수 있게 한다.
@@ -16,14 +20,18 @@ soup = BeautifulSoup(data.text, 'html.parser')
 # print(title.text)
 
 movies = soup.select('#old_content > table > tbody > tr')
-print(movies)
 
 for movie in movies:
     a = movie.select_one('td.title > div > a')
     if a is not None:
         title = a.text
-        rank = movie.select_one('td:nth-child(1) > img')
+        rank = movie.select_one('td:nth-child(1) > img')['alt']
         star = movie.select_one('td.point').text
-        print(rank['alt'], title, star)
+        doc = {
+            'title' : title,
+            'rank' : rank,
+            'star' : star,
+        }
+        db.movies.insert_one(doc)
 
 

@@ -2,6 +2,7 @@ from pymongo import MongoClient
 client = MongoClient('mongodb+srv://tjdrkr2580:rlaxogus40@cluster0.wsngksj.mongodb.net/?retryWrites=true&w=majority')
 db = client.dbspartad
 
+
 # db.users.insert_one(users) insert는 데이터 삽입
 # users는 컬렉션 어느 정도 서랍에 집어넣기는 해야 하니까..
 db.users.insert_one({'name' : 'yanggil', 'age' : 2})
