@@ -18,8 +18,12 @@ soup = BeautifulSoup(data.text, 'html.parser')
 movies = soup.select('#old_content > table > tbody > tr')
 print(movies)
 
-for movie in movies :
+for movie in movies:
     a = movie.select_one('td.title > div > a')
-    if a is not None :
-        print(a.text)
+    if a is not None:
+        title = a.text
+        rank = movie.select_one('td:nth-child(1) > img')
+        star = movie.select_one('td.point').text
+        print(rank['alt'], title, star)
+
 
