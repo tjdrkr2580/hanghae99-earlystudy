@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        const hey = () => {
+            $.ajax({
+                type: "POST",
+                url: "/test",
+                data: { title_give:'봄날은간다' },
+                success: function(response){
+                console.log(response)
+                }
+                })
+        }
+    </script>
+</head>
+<body>
+    <h1>Flask</h1>
+    <button onclick="hey()">버튼을 만들자</button>
+</body>
+</html>
