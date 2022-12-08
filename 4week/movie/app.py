@@ -23,12 +23,13 @@ def movie_post():
     desc = soup.select_one('div.story_area > p').text
     img = soup.select_one('div.poster > a > img')['src']
     doc = {
-        title,
-        img,
-        star,
-        comment,
-        desc,
+        'title' : title,
+        'image' : img,
+        'star' : star,
+        'comment' : comment,
+        'desc' : desc,
     }
+    print(doc)
     db.movies.insert_one(doc)
     return jsonify({'msg' : '평을 정상적으로 남겼습니다!'})
 

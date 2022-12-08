@@ -97,7 +97,23 @@ type: 'GET',
 url: '/movie',
 data: {},
 success: function (response) {
-    console.log(response)
+    let index_html;
+    response['movies'].map((movie) => {
+        index_html += `
+        <div class="col">
+            <div class="card h-100">
+            <img src="${movie.image}"
+            class="card-img-top">
+            <div class="card-body">
+            <h5 class="card-title">${movie.title}</h5>
+            <p class="card-text">${movie.desc}</p>
+            <p>${"⭐".repeat(movie.star)}</p>
+            <p class="mycomment">${movie.comment}</p>
+            </div>
+            </div>
+            </div>`
+    })
+    $('.row').append(index_html)
 }
 })
 }
@@ -111,8 +127,7 @@ type: 'POST',
 url: '/movie',
 data: { 'url' : url, 'star' : star, 'comment' : comment },
 success: function (response) {
-alert(response['msg'])
-window.location.reload();
+    window.location.reload();
 }
 });
 }
@@ -158,54 +173,6 @@ $('#post-box').hide()
 </div>
 <div class="mycards">
 <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
-<div class="col">
-<div class="card h-100">
-<img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
-class="card-img-top">
-<div class="card-body">
-<h5 class="card-title">영화 제목이 들어갑니다</h5>
-<p class="card-text">여기에 영화에 대한 설명이 들어갑니다.</p>
-<p>⭐⭐⭐</p>
-<p class="mycomment">나의 한줄 평을 씁니다</p>
-</div>
-</div>
-</div>
-<div class="col">
-<div class="card h-100">
-<img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
-class="card-img-top">
-<div class="card-body">
-<h5 class="card-title">영화 제목이 들어갑니다</h5>
-<p class="card-text">여기에 영화에 대한 설명이 들어갑니다.</p>
-<p>⭐⭐⭐</p>
-<p class="mycomment">나의 한줄 평을 씁니다</p>
-</div>
-</div>
-</div>
-<div class="col">
-<div class="card h-100">
-<img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
-class="card-img-top">
-<div class="card-body">
-<h5 class="card-title">영화 제목이 들어갑니다</h5>
-<p class="card-text">여기에 영화에 대한 설명이 들어갑니다.</p>
-<p>⭐⭐⭐</p>
-<p class="mycomment">나의 한줄 평을 씁니다</p>
-</div>
-</div>
-</div>
-<div class="col">
-<div class="card h-100">
-<img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
-class="card-img-top">
-<div class="card-body">
-<h5 class="card-title">영화 제목이 들어갑니다</h5>
-<p class="card-text">여기에 영화에 대한 설명이 들어갑니다.</p>
-<p>⭐⭐⭐</p>
-<p class="mycomment">나의 한줄 평을 씁니다</p>
-</div>
-</div>
-</div>
 </div>
 </div>
 </body>
